@@ -12,7 +12,8 @@ using namespace rapidjson;
 using namespace crow;
 
 
-string get_paginated_data(int page, int page_size) {
+string get_paginated_data(int page, int page_size)
+{
     Document document;
     document.SetObject();
     Document::AllocatorType& allocator = document.GetAllocator();
@@ -52,10 +53,12 @@ int main()
         int page_size = INT_MAX;
 
         query_string query_params = query_string(req.url_params);
-        if (query_params.get("page")) {
+        if (query_params.get("page"))
+        {
             page = stoi(query_params.get("page"));
         }
-        if (query_params.get("page_size")) {
+        if (query_params.get("page_size"))
+        {
             page_size = stoi(query_params.get("page_size"));
         }
 
@@ -63,7 +66,6 @@ int main()
 
         response res(result);
         res.add_header("Content-Type", "application/json");
-        cout << result << endl;
         return res;
     });
     cout << "The websites URL: " << url << endl;
